@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: windowHeight(40),
     backgroundColor:appColors.button,
-    marginHorizontal:windowHeight(26),
+    marginHorizontal:windowHeight(2),
   },
   buttonText: {
     fontSize: fontSizes.FONT22,

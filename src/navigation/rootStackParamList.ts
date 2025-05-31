@@ -1,5 +1,9 @@
 export type RootStackParamList = {
   Welcome: undefined;
-  EmailInput: undefined;
-  OtpVerification:undefined
+  SignIn:undefined;
+  Signup: undefined;
+  ForgotPassword:undefined;
+  ResetPassword:undefined;
+  Location:undefined;
+  Locationfinder:undefined
 };

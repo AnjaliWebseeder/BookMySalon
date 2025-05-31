@@ -44,7 +44,7 @@ export default function Welcome() {
       From glow-ups to clean, Your personal salon journey starts here. Luxury, delivered home.
     </Text>
 
-    <TouchableOpacity onPress={() => navigation.navigate('EmailInput')} style={styles.button}>
+    <TouchableOpacity onPress={() => navigation.navigate('Signup')} style={styles.button}>
       <Animatable.View animation="pulse" iterationCount="infinite" duration={1500}>
         <Text><Arrow/></Text>
       </Animatable.View>

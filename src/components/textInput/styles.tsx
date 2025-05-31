@@ -1,42 +1,55 @@
 import {StyleSheet} from 'react-native';
-import { fontSizes, windowHeight, windowWidth } from '../../theme/appConstant';
+import {windowHeight } from '../../theme/appConstant';
 import appColors from '../../theme/appColors';
 import fonts from '../../theme/appFonts';
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: windowHeight(3),
+ container: {
+    marginTop: windowHeight(10),
+    marginBottom:windowHeight(8)
   },
-  sectionStyle: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: appColors.white,
-    height: windowHeight(45),
-    borderRadius: windowHeight(11),
-    paddingLeft: windowWidth(3),
-    marginVertical: windowHeight(7),
-    elevation: 3,
-    right:windowWidth(3),  
-    borderColor:"red"
-
-  },
-  textInput: {
-    flex: 1,
-    fontFamily: fonts.InterRegular,
-    color:appColors.subTitle,
-    fontSize: fontSizes.FONT18,
-    marginHorizontal: 7,
+  label: {
+    marginBottom: windowHeight(8),
+    rowGap: 10 ,
+    fontFamily: fonts.InterSemiBold,
     
   },
-  errorText: {
-  color: 'red',
-  fontSize: fontSizes.FONT17,
-  marginTop: 4,
-  fontFamily:fonts.InterMedium
+  inputContainer: {
+  flexDirection: 'row',
+  borderWidth: 1,
+  borderColor: appColors.lightGray,
+  borderRadius: 8,
+  paddingHorizontal: 12,
+  alignItems: 'center',
+  backgroundColor: appColors.white,
+
+  // Shadow for iOS
+  shadowColor: appColors.black,
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.1,
+  shadowRadius: 4,
+
+  // Shadow for Android
+  elevation: 3,
 },
+  input: {
+    flex: 1,
+    paddingVertical: 11,
+    color: appColors.black,
+    fontFamily:fonts.InterRegular
+  },
+  iconWrapper: {
+    padding: 4,
+  },
+  errorInput: {
+    borderColor: appColors.error,
+  },
+  errorText: {
+    marginTop: windowHeight(6),
+    color: appColors.error,
+    fontSize: 13,
+    fontFamily:fonts.InterMedium
+  }
 });
 
 export default styles

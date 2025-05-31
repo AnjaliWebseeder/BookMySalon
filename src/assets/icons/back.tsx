@@ -2,7 +2,7 @@ import Svg, {Path} from 'react-native-svg';
 import React from 'react';
 
 
-export function Back() {
+export function BackIcon() {
   return (
     <Svg
       width={'29'}
