@@ -1,78 +1,74 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Animated, Platform, Alert } from 'react-native';
-import Geolocation from '@react-native-community/geolocation';
+import { View, Text, Animated } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { styles } from './styles';
 import {
   requestLocationPermission,
-  checkLocationEnabled,
-  promptEnableLocation,
+  getCurrentLocation,
+  getAddressFromCoordinates,
+  saveAddressToStorage,
+  getAddressFromStorage
 } from '../../../utils/locationPermission';
+import { useNavigation } from '@react-navigation/native';
 
-export default function LocationFinder() {
-  const [found, setFound] = useState(false);
-  const [address, setAddress] = useState('');
+const LocationFinderScreen: React.FC = () => {
+  const [found, setFound] = useState<boolean>(false);
+  const [address, setAddress] = useState<string>('');
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const navigation = useNavigation();
 
   useEffect(() => {
-    const fetchLocation = async () => {
-      const hasPermission = await requestLocationPermission();
-      if (!hasPermission) {
-        Alert.alert(
-          'Permission denied',
-          'Location permission is required to find your location.'
-        );
-        return;
+    const checkStoredAddress = async () => {
+      const stored = await getAddressFromStorage();
+      if (stored) {
+        // Navigate directly if address exists
+        // navigation.reset({
+        //   index: 0,
+        //   routes: [{ name: 'Home' }], // Change 'Home' to your actual home screen route name
+        // });
+      } else {
+        locateUser();
       }
-
-      const isEnabled = await checkLocationEnabled();
-      if (!isEnabled) {
-        const prompted = await promptEnableLocation();
-        if (!prompted) {
-          Alert.alert(
-            'Location services disabled',
-            'Please enable location services to proceed.'
-          );
-          return;
-        }
-      }
-
-      Geolocation.getCurrentPosition(
-        async position => {
-          const { latitude, longitude } = position.coords;
-          await fetchAddress(latitude, longitude);
-        },
-        error => {
-          console.log('Error getting location:', error);
-          Alert.alert('Error', 'Failed to get your location. Please try again.');
-        },
-        { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-      );
     };
 
-    fetchLocation();
+    const locateUser = async () => {
+      const hasPermission = await requestLocationPermission();
+      if (!hasPermission) return;
+
+      try {
+        const location = await getCurrentLocation() as {
+          coords: { latitude: number; longitude: number };
+        };
+        const { latitude, longitude } = location.coords;
+
+        const resolvedAddress = await getAddressFromCoordinates(latitude, longitude);
+        if (resolvedAddress) {
+          setAddress(resolvedAddress);
+          await saveAddressToStorage(resolvedAddress);
+          setFound(true);
+
+          // Fade in address
+          Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 1000,
+            useNativeDriver: true,
+          }).start();
+
+          // Wait 2 seconds, then navigate
+          setTimeout(() => {
+            // navigation.reset({
+            //   index: 0,
+            //   routes: [{ name: 'Home' }], // Change 'Home' to your actual home screen route name
+            // });
+          }, 2000);
+        }
+      } catch (err) {
+        console.error('Location error:', err);
+      }
+    };
+
+    checkStoredAddress();
   }, []);
-
-  const fetchAddress = async (latitude: number, longitude: number) => {
-    try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
-      );
-      const data = await response.json();
-      const fullAddress = data.display_name;
-      setAddress(fullAddress);
-      setFound(true);
-
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 1000,
-        useNativeDriver: true,
-      }).start();
-    } catch (err) {
-      console.error('Failed to fetch address', err);
-      Alert.alert('Error', 'Failed to fetch address information.');
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -102,4 +98,6 @@ export default function LocationFinder() {
       )}
     </View>
   );
-}
+};
+
+export default LocationFinderScreen;

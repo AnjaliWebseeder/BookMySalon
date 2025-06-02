@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { fontSizes, windowHeight } from "../../../theme/appConstant";
+import { fontSizes } from "../../../theme/appConstant";
 import appColors from "../../../theme/appColors";
 import fonts from "../../../theme/appFonts";
 

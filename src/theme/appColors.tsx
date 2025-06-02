@@ -8,7 +8,8 @@ const  appColors = {
     button:'#6C3C7A',
     lightGray:"#ccc",
     error:"#FF0000",
-    content:"#C7C7C7"
+    content:"#C7C7C7",
+    active:"#4E4E4E"
 } as const;
 
 export default appColors;
