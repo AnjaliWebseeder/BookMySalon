@@ -6,6 +6,7 @@ export type RootStackParamList = {
   ResetPassword:undefined;
   Location:undefined;
   Locationfinder:undefined;
+  BottomTabs:undefined;
   Home:undefined,
   Cart:undefined,
   Appointment:undefined;

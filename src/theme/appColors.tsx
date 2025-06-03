@@ -9,7 +9,15 @@ const  appColors = {
     lightGray:"#ccc",
     error:"#FF0000",
     content:"#C7C7C7",
-    active:"#4E4E4E"
+    active:"#4E4E4E",
+    shadow:'#000',
+    border:"#D4D4D4",
+    placeholder:"#BBBBBB",
+    cardGradient:'#7A7176',
+    divider:"#EFEAF0",
+    activeCategory:'#AA8E9D',
+    lightWhite:"#F0F0F0"
+    
 } as const;
 
 export default appColors;

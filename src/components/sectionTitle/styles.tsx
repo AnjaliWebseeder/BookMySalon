@@ -1,4 +1,7 @@
 import { StyleSheet } from "react-native";
+import { fontSizes } from "../../theme/appConstant";
+import fonts from "../../theme/appFonts";
+import appColors from "../../theme/appColors";
 
 export const styles = StyleSheet.create({
      container: {
@@ -9,12 +12,16 @@ export const styles = StyleSheet.create({
     marginTop: 20
   },
   title: {
-    fontSize: 18,
-    fontWeight: '600'
+    fontSize: fontSizes.FONT19,
+    fontFamily:fonts.InterSemiBold,
+    color:appColors.black
+   
   },
   viewAll: {
-    color: 'purple',
-    fontSize: 14
+    color: appColors.button,
+    fontSize: fontSizes.FONT18,
+    textDecorationLine:"underline",
+    fontFamily:fonts.InterSemiBold
   }
 
 })

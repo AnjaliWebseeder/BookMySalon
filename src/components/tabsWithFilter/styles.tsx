@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
+import { windowHeight } from "../../theme/appConstant";
 
 export const styles = StyleSheet.create({
 container: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: 10
+    marginHorizontal:windowHeight(8),
+    marginVertical: 15
   },
   tab: {
     paddingHorizontal: 16,

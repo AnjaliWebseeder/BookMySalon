@@ -1,23 +1,37 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
+import { fontSizes, windowHeight, windowWidth } from '../../../theme/appConstant';
+import appColors from '../../../theme/appColors';
+import fonts from '../../../theme/appFonts';
 
 export const styles = StyleSheet.create({
- container: {
-    paddingHorizontal: 10,
+  container: {
+    paddingHorizontal: windowHeight(6),
     paddingTop: 10
   },
-  item: {
-    flex: 1,
-    margin: 5,
+  itemWrapper: {
     alignItems: 'center',
+    margin: windowHeight(6.5),
+  },
+  item: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   image: {
-    width: 90,
-    height: 90,
+    width: windowHeight(92),
+    height: windowHeight(80),
     borderRadius: 12,
   },
   label: {
-    marginTop: 6,
     textAlign: 'center',
-    fontSize: 12
+    fontSize: fontSizes.FONT17,
+    marginTop: windowHeight(9),
+    color: appColors.black,
+    fontFamily:fonts.InterSemiBold,
+    width:windowWidth(130)
+  },
+  card: {
+    borderRadius: 12,
+    width: windowHeight(92),
+    height: windowHeight(80),
   }
-})
+});

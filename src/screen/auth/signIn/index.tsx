@@ -51,7 +51,7 @@ export default function SignIn() {
     
     const handleSignIn = () => {
         if(validateForm()) {
-          // navigation.navigate()
+           navigation.navigate('BottomTabs')
         }
     }
   return (

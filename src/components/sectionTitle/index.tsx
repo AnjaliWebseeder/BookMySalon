@@ -3,9 +3,9 @@ import React from 'react'
 import {styles} from './styles'
 
 type sectionTitleparams = {
-  showViewAll: boolean,
+  showViewAll?: boolean,
   title: String,
-  onPress: () => void
+  onPress?: () => void
 
 }
 

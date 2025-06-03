@@ -3,7 +3,7 @@ import Svg, { Path , Mask ,Rect,G} from 'react-native-svg';
 
 export function SearchIcon(props:{color?:string}) {
   return (
-  <Svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <Svg width="18" height="18" viewBox="0 0 16 16" fill="none">
 <Mask id="mask0_2414_5616" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16">
 <Rect width="16" height="16" fill="#D9D9D9"/>
 </Mask>
